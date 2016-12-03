@@ -44,7 +44,7 @@ def walk(directions, debug=false)
 end
 
 directions = ["R5", "L5", "R5", "R3"]
-position = walk(directions, true)
+position = walk(directions)
 describe(position)
 
 directions = ["L5", "R1", "R3", "L4", "R3", "R1", "L3", "L2", "R3", "L5", "L1",
@@ -60,6 +60,6 @@ directions = ["L5", "R1", "R3", "L4", "R3", "R1", "L3", "L2", "R3", "L5", "L1",
 "R2", "R3", "L3", "R4", "L1", "L3", "R2", "R1", "R5", "L4", "L5", "L5", "R4",
 "L5", "L2", "L4", "R4", "R4", "R1", "L3", "L2", "L4", "R3"]
 position = walk(directions)
-describe(position)
+puts describe(position)
 
 # 273
