@@ -17,35 +17,54 @@ def describe(position)
     (position[1] >= 0 ? "East" : "West")
 end
 
-def walk(directions, debug=false)
+def remember(history, position)
+  puts describe(position)
+  if history.include?(position)
+    raise ArgumentError, "You've been here before: #{describe position}"
+  else
+    history << position.dup
+  end
+end
+
+def walk_with_memory(directions)
   heading = 0 # North
   position = [0,0] # x (horizontal), y (vertical)
 
+  # In puzzle 2 we want to stop when we recross our path
+  history = []
+
   directions.each do |direction|
+
     turn  = direction[0]
     steps = direction[1..-1].to_i
     heading = change_heading(heading, turn)
 
-    case heading
+    operand, operator = case heading
     when 0
-      position[0] += steps # Go north
+      steps.times do
+        position[0] += 1 # Go north
+        remember(history, position)
+      end
     when 1
-      position[1] += steps # Go east
+      steps.times do
+        position[1] += 1 # Go east
+        remember(history, position)
+      end
     when 2
-      position[0] -= steps # Go south
+      steps.times do
+        position[0] -= 1 # Go south
+        remember(history, position)
+      end
     when 3
-      position[1] -= steps # Go west
+      steps.times do
+        position[1] -= 1 # Go west
+        remember(history, position)
+      end
     end
-
-    puts describe(position) if debug
   end
 
   position
 end
-
-directions = ["R5", "L5", "R5", "R3"]
-position = walk(directions, true)
-describe(position)
 
 directions = ["L5", "R1", "R3", "L4", "R3", "R1", "L3", "L2", "R3", "L5", "L1",
 "L2", "R5", "L1", "R5", "R1", "L4", "R1", "R3", "L4", "L1", "R2", "R5", "R3",
@@ -59,7 +78,12 @@ directions = ["L5", "R1", "R3", "L4", "R3", "R1", "L3", "L2", "R3", "L5", "L1",
 "R4", "L2", "L1", "L3", "L3", "L5", "R3", "L4", "L3", "R5", "R4", "R2", "L4",
 "R2", "R3", "L3", "R4", "L1", "L3", "R2", "R1", "R5", "L4", "L5", "L5", "R4",
 "L5", "L2", "L4", "R4", "R4", "R1", "L3", "L2", "L4", "R3"]
-position = walk(directions)
-describe(position)
+position = walk_with_memory(directions)
 
-# 273
+# First guess: 257 ([111, -146])
+#   Reason: I thought it was first revist of distinct direction destinations,
+#     when it's actually wanting the first time you cross your path
+# Second guess: 115 ([113, 2]) Correct
+
+example = ["R8", "R4", "R4", "R8"]
+position = walk_with_memory(example)
