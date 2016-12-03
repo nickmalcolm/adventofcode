@@ -2,6 +2,12 @@
 
 Nick's Advent of Code solutions for 2016.
 
+Puzzles are solved in Ruby and can be run like
+
+```
+  ruby day1/puzzle1.rb
+```
+
 ## Guesses & Solutions
 
 |Day|Puzzle|Guess|Correct?|Notes|
