@@ -1,0 +1,7 @@
+{
+  "abba[mnop]qrst" : true,
+  "abcd[bddb]xyyx" : false,
+  "aaaa[qwer]tyui" : false,
+  "ioxxoj[asdfgh]zxcvbn" : true,
+  "aaaa[qwer]zxcvbn[asdfgh]tyuiioxxoj" : true
+}
