@@ -1,0 +1,4 @@
+F4 .  .  .  .  .  .  .  .  .  .  .
+F3 .  .  .  .  .  .  .  .  .  .  .
+F2 .  .  PM .  .  .  MC .  .  .  .
+F1 E  PG    TG TM MG    RG RM CG CM
